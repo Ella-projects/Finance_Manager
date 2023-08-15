@@ -8,15 +8,15 @@ public class Book {
 
     private int bookID;           // ID given by a library to a book to make it distinguishable from other books
     private String title;         // Title of a book 
-    private String subject;       // Subject to which a book is related!
-    private String author;        // Author of book!
+    private String subject;       // Subject to which a book is related
+    private String author;        // Author of book
     private boolean isIssued;        // this will be true if the book is currently issued to some borrower.
     private HoldRequestOperations holdRequestsOperations =new HoldRequestOperations();
     static int currentIdNumber = 0;     //This will be unique for every book, since it will be incremented when everytime
                                         //when a book is created
     
   
-    public Book(int id,String t, String s, String a, boolean issued)    
+    public Book(int id,String title, String subject, String author, boolean issued)    
     {
         currentIdNumber++;
         if(id==-1)
@@ -26,10 +26,10 @@ public class Book {
         else
             bookID=id;
         
-        title = t;
-        subject = s;
-        author = a;
-        isIssued = issued;
+        this.title = title;
+        this.subject = s;
+        this.author = a;
+        this.isIssued = issued;
 
     }
 
@@ -61,7 +61,7 @@ public class Book {
         System.out.println(title + "\t\t\t" + author + "\t\t\t" + subject);
     }
     
-    // changign Info of a Book
+    // changing Info of a Book
     public void changeBookInfo() throws IOException
     {
         Scanner scanner = new Scanner(System.in);
@@ -144,11 +144,6 @@ public class Book {
         currentIdNumber = n;
     }
     
-
-    
-    
-    //-------------------------------------------------------------------//
-    
     // Placing book on Hold
     public void placeBookOnHold(Borrower bor)
     {
@@ -159,9 +154,6 @@ public class Book {
         
         System.out.println("\nThe book " + title + " has been successfully placed on hold by borrower " + bor.getName() + ".\n");
     }
-    
-    
-
 
    // Request for Holding a Book
     public void makeHoldRequest(Borrower borrower)
@@ -169,15 +161,14 @@ public class Book {
         boolean makeRequest = true;
 
         //If that borrower has already borrowed that particular book. Then he isn't allowed to make request for that book. He will have to renew the issued book in order to extend the return deadline.
-        for(int i=0;i<borrower.getBorrowedBooks().size();i++)
+        for(int i=0;i<borrower.getBorrowedBook().size();i++)
         {
-            if(borrower.getBorrowedBooks().get(i).getBook()==this)
+            if(borrower.getBorrowedBook().get(i).getBook()==this)
             {
                 System.out.println("\n" + "You have already borrowed " + title);
                 return;                
             }
         }
-        
         
         //If that borrower has already requested for that particular book. Then he isn't allowed to make the same request again.
         for (int i = 0; i < holdRequestsOperations.holdRequests.size(); i++)
@@ -196,7 +187,6 @@ public class Book {
         else
             System.out.println("\nYou already have one hold request for this book.\n");
     }
-
     
     // Getting Info of a Hold Request
     public void serviceHoldRequest(HoldRequest hr)
