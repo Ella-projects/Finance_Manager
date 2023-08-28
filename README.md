@@ -1,6 +1,6 @@
 # Library Management System
 
-Welcome to the official repository for the **Library Management System**! This system is designed to streamline the process of managing and organizing a library's resources, making it easier to track books, and borrowing activities.
+Welcome to the official repository for the **Library Management System**! This system is designed to streamline the process of managing and organizing a library's resources, making it easier to track books and borrowing activities.
 
 ![Library Management System Screenshot](screenshot.png)
 
@@ -32,7 +32,7 @@ Follow these steps to set up and run the Library Management System on your local
 
 ### Installation
 
-1. Clone this repository: `git clone https://github.com/yourusername/library-management.git`
+1. Clone this repository: 
 2. run in terminal
 
 ## Contributing
